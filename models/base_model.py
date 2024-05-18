@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+# Base model definition
+
 """Base model for AirBnB project"""
 
 from datetime import datetime
