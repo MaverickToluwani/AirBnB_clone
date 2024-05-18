@@ -9,16 +9,25 @@ import uuid
 
 class BaseModel:
     """ base model for application"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """Initializing base model attributes
         Args:
             id: Unique identifier for each instance
             created_at: Time when instance was created
             updated_at: time when instance is updated
         """
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = self.created_at
+        if kwargs is not None and kwargs != {}:
+            for key, value in kwargs.items():
+                if key == "created_at":
+                    kwargs["created_at"] = datetime.fromisoformat(value)
+                if key == "updated_at":
+                    kwargs["updated_at"] = datetime.fromisoformat(value)
+            kwargs.pop("__class__")
+            self.__dict__.update(**kwargs)
+        else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __setattr__(self, key, value):
         """Overides the default setattr method such that
