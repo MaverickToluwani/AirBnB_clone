@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-# python console 
+# python console
 
 """project concole module"""
 
 import cmd
-import sys  
+import sys
 
 
 class HBNBCommand(cmd.Cmd):
@@ -21,9 +21,10 @@ class HBNBCommand(cmd.Cmd):
 
     def help_quit(self):
         print('Quit command to exit the program')
-    
+
     def emptyline(self):
         pass
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
